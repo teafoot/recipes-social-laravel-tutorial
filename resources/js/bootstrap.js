@@ -43,5 +43,5 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 // Instalar Momentjs
 
-window.moment = require('moment');
+window.moment = require('moment'); // lo usaremos con Vue.js
 

@@ -38,7 +38,6 @@
 
                                     // Eliminar receta del DOM
                                     this.$el.parentNode.parentNode.parentNode.removeChild(this.$el.parentNode.parentNode);
-
                                 })
                                 .catch(error => {
                                     console.log(error)

@@ -14,25 +14,22 @@ class InicioController extends Controller
     {
 
         // Mostrar las recetas por cantidad de votos
-        // $votadas = Receta::has('likes', '>', 0)->get();
-        $votadas = Receta::withCount('likes')->orderBy('likes_count', 'desc')->take(3)->get();
+        // $votadas = Receta::has('likes', '>', 0)->get(); // mas de 0 usuarios
+        $votadas = Receta::withCount('likes')->orderBy('likes_count', 'desc')->take(3)->get(); // crea una campo temporal 'likes_count'
 
         // Obtener las recetas mas nuevas
         $nuevas = Receta::latest()->take(6)->get();
+        // $nuevas = Receta::orderBy('created_at', 'DESC')->get();
 
         // obtener todas las categorias
         $categorias = CategoriaReceta::all();
         // return $categorias;
-
         // Agrupar las recetas por categoria
         $recetas = [];
-       
         foreach($categorias as $categoria) {
-            $recetas[ Str::slug( $categoria->nombre ) ][] = Receta::where('categoria_id', $categoria->id )->take(3)->get();
+            $recetas[Str::slug( $categoria->nombre )][] = Receta::where('categoria_id', $categoria->id )->take(3)->get(); // 3 recetas por categoria
         }
-
         // return $recetas;
-
 
         return view('inicio.index', compact('nuevas', 'recetas', 'votadas'));
     }

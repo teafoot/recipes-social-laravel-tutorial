@@ -17,5 +17,4 @@
             {{ $recetas->links() }}
         </div>
     </div>
-
 @endsection

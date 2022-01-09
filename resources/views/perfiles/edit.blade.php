@@ -94,6 +94,7 @@
                             <img src="/storage/{{$perfil->imagen}}" style="width: 300px">
                         </div>
 
+                        {{-- esto va fuera del @if??? --}}
                         @error('imagen')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{$message}}</strong>

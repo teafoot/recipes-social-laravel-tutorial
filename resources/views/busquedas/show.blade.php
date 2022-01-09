@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('content')
     <div class="container">
         <h2 class="titulo-categoria text-uppercase mt-5 mb-4">
@@ -17,5 +16,4 @@
             {{ $recetas->links() }}
         </div>
     </div>
-
 @endsection

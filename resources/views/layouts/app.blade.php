@@ -11,7 +11,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-   
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -19,7 +19,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-   
+
 
 
     <!-- Styles -->
@@ -61,19 +61,17 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
-                                    <a 
-                                        class="dropdown-item" 
+                                    <a
+                                        class="dropdown-item"
                                         href="{{ route('perfiles.show', ['perfil' => Auth::user()->id ]) }}">
                                         {{ 'Ver Perfil' }}
                                     </a>
-
-                                    <a 
-                                        class="dropdown-item" 
+                                    <a
+                                        class="dropdown-item"
                                         href="{{ route('recetas.index') }}">
                                         {{ 'Ver Recetas' }}
+                                        {{-- ve las rescetas creados por el usuario --}}
                                     </a>
-
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -119,7 +117,7 @@
                 <div class="py-4 mt-5 col-12">
                     @yield('botones')
                 </div>
-                
+
                 <main class="py-4 mt-5 col-12">
                     @yield('content')
                 </main>

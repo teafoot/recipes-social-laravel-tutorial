@@ -16,7 +16,7 @@ class LikesController extends Controller
     public function update(Request $request, Receta $receta)
     {
         // Almacena los likes de un usuario a una receta
-        return auth()->user()->meGusta()->toggle($receta);
+        return auth()->user()->meGusta()->toggle($receta); // usuario (autenticado) y receta (modelo)
     }
 
 }

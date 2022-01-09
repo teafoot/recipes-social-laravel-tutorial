@@ -50,9 +50,9 @@
                     >
                         <option value="">-- Seleccione -</option>
                         @foreach ($categorias as $categoria)
-                            <option 
-                                value="{{ $categoria->id }}" 
-                                {{ $receta->categoria_id == $categoria->id ? 'selected' : '' }} 
+                            <option
+                                value="{{ $categoria->id }}"
+                                {{ $receta->categoria_id == $categoria->id ? 'selected' : '' }}
                             >{{$categoria->nombre}}</option>
                         @endforeach
                     </select>
@@ -67,7 +67,7 @@
                 <div class="form-group mt-3">
                     <label for="preparacion">Preparación</label>
                     <input id="preparacion" type="hidden" name="preparacion" value="{{ $receta->preparacion }}">
-                    <trix-editor 
+                    <trix-editor
                         class="form-control @error('preparacion') is-invalid @enderror "
                         input="preparacion"
                     ></trix-editor>
@@ -82,7 +82,7 @@
                 <div class="form-group mt-3">
                     <label for="ingredientes">Ingredientes</label>
                     <input id="ingredientes" type="hidden" name="ingredientes" value="{{ $receta->ingredientes }}">
-                    <trix-editor 
+                    <trix-editor
                         class="form-control @error('ingredientes') is-invalid @enderror "
                         input="ingredientes"></trix-editor>
 
@@ -96,9 +96,9 @@
                 <div class="form-group mt-3">
                     <label for="imagen">Elige la imagen</label>
 
-                    <input 
-                        id="imagen" 
-                        type="file" 
+                    <input
+                        id="imagen"
+                        type="file"
                         class="form-control @error('imagen') is-invalid @enderror"
                         name="imagen"
                     >

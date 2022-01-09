@@ -37,7 +37,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // Evento que se ejecuta cuando un usuario es creado
+    // Evento que se ejecuta cuando un usuario es creado (evento eloquent)
     protected static function boot()
     {
         parent::boot();

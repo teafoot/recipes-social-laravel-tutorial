@@ -40,8 +40,6 @@
             @else
                 <p class="text-center w-100">No hay recetas aún...</p>
             @endif
-            
-   
         </div>
         <div class="d-flex justify-content-center">
             {{$recetas->links()}}

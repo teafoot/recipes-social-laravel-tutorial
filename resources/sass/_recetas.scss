@@ -3,6 +3,7 @@ body {
     background-color: #f4f0f0;
 }
 trix-editor {
+    height: auto!important;
     min-height: 400px;
 }
 .bg-primary .navbar-brand {
@@ -104,7 +105,7 @@ trix-editor {
         &:hover:before {
           transform:  translateX(0);
         }
-    
+
 }
 }
 

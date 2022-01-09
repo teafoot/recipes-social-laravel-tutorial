@@ -8,12 +8,11 @@
                 @php
                     $fecha = $receta->created_at
                 @endphp
-
                 <p class="text-primary fecha font-weight-bold">
                     <fecha-receta fecha="{{$fecha}}" ></fecha-receta>
                 </p>
 
-                <p> {{ count( $receta->likes ) }} Les gustó</p> 
+                <p> {{ count( $receta->likes ) }} Les gustó</p> {{-- likes/usuarios --}}
             </div>
 
             <p> {{ Str::words(  strip_tags( $receta->preparacion ), 20, ' ...' ) }} </p>

@@ -23,22 +23,13 @@ Route::get('/recetas/{receta}', 'RecetaController@show' )->name('recetas.show');
 Route::get('/recetas/{receta}/edit', 'RecetaController@edit')->name('recetas.edit');
 Route::put('/recetas/{receta}', 'RecetaController@update')->name('recetas.update');
 Route::delete('/recetas/{receta}', 'RecetaController@destroy')->name('recetas.destroy');
-
-Route::get('/categoria/{categoriaReceta}', 'CategoriasController@show')->name('categorias.show');
-
-// Buscador de Recetas
-Route::get('/buscar', 'RecetaController@search')->name('buscar.show');
-
 // Route::resource('recetas', 'RecetaController');
+Route::get('/buscar', 'RecetaController@search')->name('buscar.show'); // Buscador de Recetas
+Route::post('/recetas/{receta}', 'LikesController@update')->name('likes.update'); // Almacena los likes de las recetas
+Route::get('/categoria/{categoriaReceta}', 'CategoriasController@show')->name('categorias.show'); // todas las recetas por categoria
 
 Route::get('/perfiles/{perfil}', 'PerfilController@show')->name('perfiles.show');
 Route::get('/perfiles/{perfil}/edit', 'PerfilController@edit')->name('perfiles.edit');
 Route::put('/perfiles/{perfil}', 'PerfilController@update')->name('perfiles.update');
 
-
-
-// Almacena los likes de las recetas
-Route::post('/recetas/{receta}', 'LikesController@update')->name('likes.update');
-
 Auth::routes();
-

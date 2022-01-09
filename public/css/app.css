@@ -10888,6 +10888,7 @@ body {
 }
 
 trix-editor {
+  height: auto !important;
   min-height: 400px;
 }
 

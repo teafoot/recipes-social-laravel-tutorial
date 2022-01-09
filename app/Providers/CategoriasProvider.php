@@ -15,7 +15,7 @@ class CategoriasProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // cuando no vas a usar cosas que laravel ofrece
     }
 
     /**
@@ -23,10 +23,10 @@ class CategoriasProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot() // cuando requires algo de laravel primero
     {
+        // pasar las categorias de las recetas a cualquier view
         View::composer('*', function($view) {
-
             $categorias = CategoriaReceta::all();
             $view->with('categorias', $categorias);
         });

@@ -27,7 +27,7 @@ class RecetaController extends Controller
     {
 
         // auth()->user()->recetas->dd();
-        // $recetas = auth()->user()->recetas->paginate(2);
+        // $recetas = auth()->user()->recetas->paginate(2); // salta error
 
         $usuario = auth()->user();
 
@@ -46,7 +46,7 @@ class RecetaController extends Controller
      */
     public function create()
     {
-        // DB::table('categoria_receta')->get()->pluck('nombre', 'id')->dd();
+        // DB::table('categoria_recetas')->get()->pluck('nombre', 'id')->dd(); // solo obtener nombre, id
 
         // Obtener las categorias (sin modelo)
         // $categorias =  DB::table('categoria_recetas')->get()->pluck('nombre', 'id');
@@ -79,11 +79,10 @@ class RecetaController extends Controller
         ]);
 
         // obtener la ruta de la imagen
-        $ruta_imagen = $request['imagen']->store('upload-recetas', 'public');
-
+        $ruta_imagen = $request['imagen']->store('upload-recetas', 'public'); // guarda la imagen en el storage con un nombre aleatorio
         // Resize de la imagen
-        $img = Image::make( public_path("storage/{$ruta_imagen}"))->fit(1000, 550);
-        $img->save();
+        $img = Image::make( public_path("storage/{$ruta_imagen}"))->fit(1000, 550); // intervention image ; crop and resize
+        $img->save(); // override la imagen anterior
 
         // almacenar en la bd (sin modelo)
         // DB::table('recetas')->insert([
@@ -95,7 +94,7 @@ class RecetaController extends Controller
         //     'categoria_id' => $data['categoria']
         // ]);
 
-        // almacenar en la BD (con modelo)
+        // almacenar en la BD (con modelo - orm)
         auth()->user()->recetas()->create([
              'titulo' => $data['titulo'],
              'preparacion' => $data['preparacion'],
@@ -119,12 +118,12 @@ class RecetaController extends Controller
     public function show(Receta $receta)
     {
         // Obtener si el usuario actual le gusta la receta y esta autenticado
-        $like = ( auth()->user() ) ?  auth()->user()->meGusta->contains($receta->id) : false; 
+        $like = ( auth()->user() ) ?  auth()->user()->meGusta->contains($receta->id) : false; // meGusta/receta es un array de objetos ; contains es un metodo Collection
 
         // Pasa la cantidad de likes a la vista
-        $likes = $receta->likes->count();
+        $likes = $receta->likes->count(); // likes/user es un array de objetos
 
-        return view('recetas.show', compact('receta', 'like', 'likes'));
+        return view('recetas.show', compact('receta', 'like', 'likes')); // es como destructuring en js
     }
 
     /**
@@ -136,7 +135,7 @@ class RecetaController extends Controller
     public function edit(Receta $receta)
     {
         // Revisar el policy
-        $this->authorize('view', $receta);
+        $this->authorize('view', $receta); // solo el mismo usuario que creo la receta puede ver el formulario de edicion
 
         // Con modelo
         $categorias = CategoriaReceta::all(['id', 'nombre']);
@@ -155,7 +154,7 @@ class RecetaController extends Controller
     {
 
         // Revisar el policy
-        $this->authorize('update', $receta);
+        $this->authorize('update', $receta); // revisa RecetaPolicy->update
 
         // validación
         $data = $request->validate([
@@ -214,7 +213,7 @@ class RecetaController extends Controller
         $busqueda = $request->get('buscar');
 
         $recetas = Receta::where('titulo', 'like', '%' . $busqueda . '%')->paginate(10);
-        $recetas->appends(['buscar' => $busqueda]);
+        $recetas->appends(['buscar' => $busqueda]); // agregar al query string para no perderlo cuando navegamos por los links de paginacion
 
         return view('busquedas.show', compact('recetas', 'busqueda'));
     }

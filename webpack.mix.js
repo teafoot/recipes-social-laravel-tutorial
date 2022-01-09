@@ -13,6 +13,6 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
    .autoload({
-      jquery: ['$', 'window.jQuery', 'jQuery']
+      jquery: ['$', 'window.jQuery', 'jQuery'] // precargar jquery en app.js (porque owl carousel lo necesita)
    })
    .sass('resources/sass/app.scss', 'public/css');

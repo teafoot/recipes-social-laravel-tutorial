@@ -40,7 +40,7 @@ class PerfilController extends Controller
     public function edit(Perfil $perfil)
     {
         // Ejecutar el Policy
-        $this->authorize('view', $perfil);
+        $this->authorize('view', $perfil); // solo el mismo usuario autenticado puede ver su propio formulario de edicion de perfil
 
 
         //
@@ -73,26 +73,26 @@ class PerfilController extends Controller
 
             // Resize de la imagen
             $img = Image::make( public_path("storage/{$ruta_imagen}"))->fit(600, 600 );
-            $img->save();
+            $img->save(); // overwrite image
 
             // Crear un arreglo de imagen
             $array_imagen = ['imagen' => $ruta_imagen];
         } 
 
         // Asignar nombre y URL
-        auth()->user()->url = $data['url'];
         auth()->user()->name = $data['nombre'];
+        auth()->user()->url = $data['url'];
         auth()->user()->save();
 
         // Eliminar url y name de $data
-        unset($data['url']);
         unset($data['nombre']);
+        unset($data['url']);
 
 
         // Guardar información
         // Asignar Biografia e imagen
         auth()->user()->perfil()->update( array_merge(
-            $data,
+            $data, // solo la biografia
             $array_imagen ?? []
         ) );
 
